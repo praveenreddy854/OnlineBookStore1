@@ -1,0 +1,149 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true"  CodeBehind="AdminMaster.master.cs" Inherits="OnlineBookStore.Admin.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <script src="~/Assets/Styles/bootstrap/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="~/Assets/Scripts/jquery-3.1.1.js"></script>
+    <link href="~/Assets/Styles/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Assets/Styles/bootstrap/js/bootstrap.js"></script>
+    <link href="~/Assets/Styles/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Assets/Styles/Styles.css" rel="stylesheet" />
+  
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    
+    
+    <script>
+        $(function () {
+            $('.fa-user').hover(function () {
+                $('.signIn').addClass('dispayOnHover');
+            }, function () {
+
+                $('.signIn').hover(function () {
+                    return 0;
+                }
+                , function () {
+                    setTimeout(function () {
+                        $('.signIn').removeClass('dispayOnHover');
+                    }, 1000);
+                }); 
+
+            });
+
+            
+        
+        });
+
+    </script>
+    <style>
+        
+        .contentPlaceHolder
+        {
+            position : absolute !important;
+            top : 300px;
+        }
+        .dispayOnHover {
+            display: block !important;
+            
+            
+        }
+
+        .width400 {
+            width: 320px !important;
+        }
+
+        .signIn {
+            display: none;
+            width : 120px !important;
+            border : 1px solid black !important;
+            z-index : 50;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <div class="page-header">
+                <a runat="server" href="Home.aspx">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <p>Online Book Store</p>
+                </a>
+            </div>
+            
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a runat="server" style="visibility:hidden" href="~/Home.aspx">Home</a></li>
+                            <li><a runat="server" href="~/Admin/AddBook.aspx">Add Book</a></li>
+                            <li><a runat="server" href="~/Admin/ManageBooks.aspx">Manage Books</a></li>
+                            <li><a runat="server" href="~/Admin/ManageUsers.aspx">Manage Customers</a></li>
+                            <li><a runat="server" href="~/Admin/ManageOrders.aspx">Manage Orders</a></li>
+                            <li><a runat="server" href="~/Admin/Support.aspx">Support</a></li>
+                        </ul>
+
+                        
+                        <ul class="nav navbar navbar-right">
+                            
+                            <li id="fa-user">
+                            <a runat="server" href="~/Login.aspx"><i class="fa fa-user" style="font-size: x-large; color: black"></i></a>
+                            <asp:Panel ID="pnlSignIn" Visible="false" runat="server">
+                                <ul class="nav navbar navbar-right signIn" id="signIn">
+                                <li>
+                                    <asp:LinkButton ID="lbSignIn" PostBackUrl="~/Login.aspx" runat="server">Log In</asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton ID="lbSingUp" PostBackUrl="~/Register.aspx" runat="server">Sign Up</asp:LinkButton>
+                                </li>
+                            </ul>
+                            </asp:Panel>
+
+                            <asp:Panel ID="PnlSignOut" Visible="false" runat="server">
+                                <ul class="nav navbar navbar-right signIn" id="signOut">
+                                <li>
+                                    <asp:LinkButton ID="lblKart" PostBackUrl="~/Admin/AddBook.aspx" runat="server">Add Book</asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton ID="lbOrders" PostBackUrl="~/Admin/ManageBooks.aspx" runat="server">Manage Books</asp:LinkButton>
+                                </li>
+                                    <li>
+                                    <asp:LinkButton ID="lbManageOrders" PostBackUrl="~/Admin/ManageOrders.aspx" runat="server">Manage Orders</asp:LinkButton>
+                                </li>
+                                    <li>
+                                    <asp:LinkButton ID="LinkButton1" PostBackUrl="~/Admin/ManageUsers.aspx" runat="server">Manage Customers</asp:LinkButton>
+                                </li>
+                                    <li>
+                                    <asp:LinkButton ID="lbSingOur" OnClick="lbSingOur_Click"  runat="server">Sign Out</asp:LinkButton>
+                                </li>
+                            </ul>
+                            </asp:Panel>
+                            
+                        </li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </div>
+        
+        
+        <div class="contentPlaceHolder">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
