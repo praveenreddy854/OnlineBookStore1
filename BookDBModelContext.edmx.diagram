@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c6a93f5ed4c749a89d24cb180b0a9fdb" Name="Diagram1">
+        <EntityTypeShape EntityType="BookDBModel.Admins" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.Book" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.BooksInKart" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.BookStatus" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.Category" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.OrderByItem" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.Orders" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.PaymentType" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.Users" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookDBModel.ShippingAddress" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <AssociationConnector Association="BookDBModel.FK__Book__BookStatus__164452B1" ManuallyRouted="false" />
+        <AssociationConnector Association="BookDBModel.FK__Book__CategoryID__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="BookDBModel.FK__BooksInKa__BookI__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="BookDBModel.FK__OrderByIt__BookI__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="BookDBModel.FK__BooksInKa__UserI__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="BookDBModel.FK__OrderByIt__Order__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="BookDBModel.FK__Orders__PaymentT__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="BookDBModel.FK__Orders__UserID__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="BookDBModel.FK__ShippingA__USerI__1FCDBCEB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

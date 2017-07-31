@@ -1,0 +1,212 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CustomerMasterPage.master.cs" Inherits="OnlineBookStore.CustomerMasterPage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="Assets/Scripts/jquery-3.1.1.js"></script>
+    <link href="Assets/Styles/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="Assets/Styles/bootstrap/js/bootstrap.js"></script>
+    <link href="Assets/Styles/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" />
+    <link href="Assets/Styles/Styles.css" rel="stylesheet" />
+    <script src="Assets/Styles/bootstrap/js/bootstrap.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="Assets/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="Assets/Scripts/jquery-1.10.2.js"></script>
+    <link href="Assets/Styles/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+    <script src="Assets/Scripts/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $('.fa-user').hover(function () {
+                $('.signIn').addClass('dispayOnHover');
+            }, function () {
+
+                $('.signIn').hover(function () {
+                    return 0;
+                }
+                , function () {
+                    setTimeout(function () {
+                        $('.signIn').removeClass('dispayOnHover');
+                    }, 1000);
+                }); 
+
+            });
+
+            $('#txtSearch').autocomplete({
+
+                source: function (request, response) {
+
+                    $.ajax(
+                        {
+                            url: 'SearchService.asmx/Search',
+                            method: 'post',
+                            contentType: 'application/json;charset=utf-8',
+                            data: JSON.stringify({ bookName: $('#txtSearch').val() }),
+                            dataType: 'json',
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (err) {
+                                response(err);
+                            }
+                        });
+                }
+            });
+        
+        });
+
+    </script>
+    <style>
+        
+        .contentPlaceHolder
+        {
+            position : absolute !important;
+            top : 300px;
+        }
+        .dispayOnHover {
+            display: block !important;
+            
+            
+        }
+
+        .width400 {
+            width: 320px !important;
+        }
+
+        .signIn {
+            display: none;
+            width : 120px !important;
+            border : 1px solid black !important;
+            
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <div class="page-header">
+                <a runat="server" href="Home.aspx">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <p>Online Book Store</p>
+                </a>
+            </div>
+
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/Home.aspx">Home</a></li>
+                        <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
+                        <li><a runat="server" href="~/About.aspx">About</a></li>
+
+                    </ul>
+
+                    <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                            <asp:TextBox ID="txtSearch" runat="server" class="form-control width400" placeholder="Search for author or book"></asp:TextBox>
+                            
+                            
+                        </div>
+                        <asp:Button ID="btnSearch" CssClass="btn btn-primary" CausesValidation="false" OnClick="btnSearch_Click" runat="server" Text="SEARCH" />
+                    </div>
+                    <ul class="nav navbar navbar-right">
+                        <li>
+                            <button runat="server" onserverclick="Unnamed_ServerClick" class="btn btn-primary">
+                                <i class="fa fa-shopping-cart">CART</i>
+                            </button>
+
+
+                        </li>
+                        <li id="fa-user">
+                            <a runat="server" href="~/Login.aspx"><i class="fa fa-user" style="font-size: x-large; color: black"></i></a>
+                            <asp:Panel ID="pnlSignIn" Visible="false" runat="server">
+                                <ul class="nav navbar navbar-right signIn" id="signIn">
+                                <li>
+                                    <asp:LinkButton ID="lbSignIn" CausesValidation="false" PostBackUrl="~/Login.aspx" runat="server">Log In</asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton ID="lbSingUp" CausesValidation="false" PostBackUrl="~/Register.aspx" runat="server">Sign Up</asp:LinkButton>
+                                </li>
+                            </ul>
+                            </asp:Panel>
+
+                            <asp:Panel ID="PnlSignOut" Visible="false" runat="server">
+                                <ul class="nav navbar navbar-right signIn" id="signOut">
+                                <li>
+                                    <asp:LinkButton ID="lblKart" CausesValidation="false" PostBackUrl="~/Customers/Kart.aspx" runat="server">Items In Kart</asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton ID="lbOrders" CausesValidation="false" PostBackUrl="~/Customers/OrderHistory.aspx" runat="server">Your Orders</asp:LinkButton>
+                                </li>
+                                    <li>
+                                    <asp:LinkButton ID="lbSingOur" CausesValidation="false" OnClick="lbSingOur_Click"  runat="server">Sign Out</asp:LinkButton>
+                                </li>
+                            </ul>
+                            </asp:Panel>
+                            
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+        <div id="breadcrumbDiv">
+
+            <ol class="breadcrumb">
+                <li>Quick links <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </li>
+                <li>
+                    <a runat="server" href="~/Home.aspx">All</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Science Fiction">Science Fiction</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Satire">Satire</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Drama">Drama</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Action and Adventure">Action and Adventure</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Romance">Romance</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Mystery">Mystery</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Horror">Horror</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Comics">Comics</a>
+                </li>
+                <li>
+                    <a runat="server" href="~/BooksByCategory.aspx?categoryName=Travel">Travel</a>
+                </li>
+            </ol>
+        </div>
+
+        <div class="contentPlaceHolder">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

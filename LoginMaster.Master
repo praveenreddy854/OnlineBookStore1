@@ -1,0 +1,24 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="LoginMaster.master.cs" Inherits="OnlineBookStore.LoginMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="Assets/Styles/LoginStyles.css" rel="stylesheet" />
+    <link href="Assets/Styles/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="Assets/Styles/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" />
+</head>
+
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+         <br />
+        <br />
+    </form>
+</body>
+</html>
